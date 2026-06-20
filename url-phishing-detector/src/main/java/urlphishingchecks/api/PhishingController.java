@@ -17,7 +17,7 @@ public class PhishingController {
         this.service = service;
     }
 
-    // Existing endpoint — unchanged
+    // pre-load endpoint
     @GetMapping("/check")
     public ResponseEntity<PhishingResultDto> check(@RequestParam String url) {
         if (url == null || url.isBlank()) {
@@ -35,7 +35,7 @@ public class PhishingController {
         return ResponseEntity.ok(response);
     }
 
-    // New endpoint — receives page URL + extracted links from the extension
+    // post-load endpoint, receives page URL + extracted links from the extension
     @PostMapping("/check-page")
     public ResponseEntity<PhishingResultDto> checkPage(@RequestBody PageScanRequest request) {
         if (request.url() == null || request.url().isBlank()) {
