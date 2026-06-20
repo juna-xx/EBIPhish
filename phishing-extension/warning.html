@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phishing Detected</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0c0f;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .logo-container {
+  	margin-bottom: 16px;
+    }
+   .logo {
+  	width: 120px;
+  	height: auto;
+    }
+    .card {
+      background: #111318;
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    h1 { font-size: 1.5rem; color: #ef4444; margin-bottom: 16px; }
+    p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .url-box {
+      background: #0a0c0f;
+      border: 1px solid #1e2330;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #ef4444;
+      word-break: break-all;
+      margin: 16px 0 0;
+      text-align: left;
+    }
+    .note {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      color: #4a5568;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-container">
+  	<img src="icons/logopink.png" alt="EBIPhish Logo" class="logo">
+    </div>
+    <h1>Phishing Site Blocked</h1>
+    <p>This URL was flagged as <strong style="color:#ef4444">HIGH RISK</strong> by the Phishing Detector.</p>
+    <p>Visiting it may expose you to credential theft or malware.</p>
+    <div class="url-box" id="blocked-url">—</div>
+    <p class="note">Close this tab or navigate away manually.</p>
+  </div>
+
+  <script>
+    const params     = new URLSearchParams(window.location.search);
+    const blockedUrl = params.get("blocked") || "Unknown URL";
+    document.getElementById("blocked-url").textContent = blockedUrl;
+  </script>
+</body>
+</html>
